@@ -55,7 +55,7 @@ include 'config.php';
         a:hover, button:hover {
             background-color: #4cae4c;
         }
-        .manage-events, #createEventForm {
+        .manage-events, #createEventForm, #bookedEventsSection {
             display: none;
             margin-top: 20px;
         }
@@ -64,11 +64,19 @@ include 'config.php';
         function showCreateEventForm() {
             document.getElementById("createEventForm").style.display = "block";
             document.getElementById("manageEventsSection").style.display = "none";
+            document.getElementById("bookedEventsSection").style.display = "none";
         }
 
         function showManageEvents() {
             document.getElementById("manageEventsSection").style.display = "block";
             document.getElementById("createEventForm").style.display = "none";
+            document.getElementById("bookedEventsSection").style.display = "none";
+        }
+
+        function showBookedEvents() {
+            document.getElementById("bookedEventsSection").style.display = "block";
+            document.getElementById("createEventForm").style.display = "none";
+            document.getElementById("manageEventsSection").style.display = "none";
         }
     </script>
 </head>
@@ -84,6 +92,7 @@ include 'config.php';
         <!-- Buttons to toggle forms -->
         <button onclick="showCreateEventForm()">Add Event</button>
         <button onclick="showManageEvents()">Manage Events</button>
+        <button onclick="showBookedEvents()">Booked Events</button>
         
         <!-- Create Event Form -->
         <div id="createEventForm">
@@ -93,6 +102,11 @@ include 'config.php';
         <!-- Manage Events Section -->
         <div id="manageEventsSection" class="manage-events">
             <?php include 'manage_events.php'; ?>
+        </div>
+
+        <!-- Booked Events Section -->
+        <div id="bookedEventsSection" class="booked-events">
+            <?php include 'booked_events.php'; ?>
         </div>
     </div>
 </body>
