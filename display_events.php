@@ -15,7 +15,7 @@ if ($events) {
         echo '<p>Time: ' . htmlspecialchars($event['time']) . '</p>';
         echo '<p>Location: ' . htmlspecialchars($event['location']) . '</p>';
         echo '<p>Description: ' . htmlspecialchars($event['description']) . '</p>';
-        echo '<a href="purchase_ticket.php?event_id=' . $event['id'] . '">Purchase Ticket</a>';
+        echo '<a href="bookevents.php?event_id=' . $event['id'] . '">Purchase Ticket</a>';
         echo '</div>';
     }
 } else {
