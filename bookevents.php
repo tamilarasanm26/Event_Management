@@ -2,6 +2,13 @@
 // Include your database connection or configuration file
 include 'config.php';
 
+$message = '';
+$eventname = '';
+
+if (isset($_GET['event_name'])) {
+    $eventname = urldecode($_GET['event_name']);
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve form data
     $eventname = $_POST['eventname'];
@@ -20,9 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Execute the statement
     if ($stmt->execute()) {
-        echo '<p>Booking successful!</p>';
+        $message = 'Booking successful!';
     } else {
-        echo '<p>There was an error with your booking. Please try again.</p>';
+        $message = 'There was an error with your booking. Please try again.';
     }
 }
 ?>
@@ -31,23 +38,89 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 <head>
     <title>Book Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="submit"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        input[type="text"][readonly] {
+            background-color: #e9ecef;
+        }
+        input[type="submit"] {
+            background-color: #5cb85c;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+        .message {
+            color: green;
+            margin-bottom: 10px;
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Book Event</h1>
-    <form method="post" action="bookevents.php">
-        <label for="eventname">Event Name:</label><br>
-        <input type="text" id="eventname" name="eventname" required><br><br>
-        
-        <label for="quantity">Quantity:</label><br>
-        <input type="number" id="quantity" name="quantity" required><br><br>
-        
-        <label for="booker_name">Your Name:</label><br>
-        <input type="text" id="booker_name" name="booker_name" required><br><br>
-        
-        <label for="mobile_number">Mobile Number:</label><br>
-        <input type="text" id="mobile_number" name="mobile_number" required><br><br>
-        
-        <input type="submit" value="Book Now">
-    </form>
+    <div class="container">
+        <h2>Book Event</h2>
+        <form method="post" action="bookevents.php">
+            <?php if (!empty($message)) : ?>
+                <div class="<?php echo strpos($message, 'successful') !== false ? 'message' : 'error'; ?>">
+                    <?php echo $message; ?>
+                </div>
+            <?php endif; ?>
+            <label for="eventname">Event Name:</label>
+            <input type="text" id="eventname" name="eventname" value="<?php echo htmlspecialchars($eventname); ?>" readonly>
+            
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" required>
+            
+            <label for="booker_name">Your Name:</label>
+            <input type="text" id="booker_name" name="booker_name" required>
+            
+            <label for="mobile_number">Mobile Number:</label>
+            <input type="text" id="mobile_number" name="mobile_number" required>
+            
+            <input type="submit" value="Book Now">
+        </form>
+    </div>
 </body>
 </html>
