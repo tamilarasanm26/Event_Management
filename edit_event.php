@@ -5,7 +5,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
     exit();
 }
 
-// Include your database connection or configuration file
+
 include 'config.php';
 
 if (!isset($_GET['id'])) {
