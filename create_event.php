@@ -1,10 +1,10 @@
 <?php
-// Include your database connection or configuration file
+
 include 'config.php';
 
 $error = '';
 
-// Handle form submission for event creation
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_event'])) {
     $title = $_POST['title'];
     $date = $_POST['date'];
@@ -12,9 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_event'])) {
     $location = $_POST['location'];
     $description = $_POST['description'];
 
-    // Validate and sanitize input as needed
-
-    // Prepare and execute SQL query to insert event into database
+  
     $stmt = $conn->prepare("INSERT INTO events (title, date, time, location, description) 
                             VALUES (:title, :date, :time, :location, :description)");
     $stmt->bindParam(':title', $title);
