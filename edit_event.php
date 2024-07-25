@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $location = $_POST['location'];
     $description = $_POST['description'];
 
-    // Update event details in the database
+    // Update event 
     $stmt = $conn->prepare("UPDATE events SET title = :title, date = :date, time = :time, location = :location, description = :description WHERE id = :id");
     $stmt->bindParam(':title', $title);
     $stmt->bindParam(':date', $date);
