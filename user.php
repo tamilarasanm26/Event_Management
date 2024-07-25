@@ -87,10 +87,9 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'user') {
        
         <a href="logout.php">Logout</a>
         
-        <!-- Button to toggle events visibility -->
         <button onclick="toggleEvents()">Events</button>
         
-        <!-- Include display events -->
+  
         <div id="events" class="events">
             <?php include 'display_events.php'; ?>
         </div>
