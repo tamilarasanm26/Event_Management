@@ -1,5 +1,5 @@
 <?php
-// Include your database connection or configuration file
+
 include 'config.php';
 
 // Query to fetch booked events
