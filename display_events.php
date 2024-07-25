@@ -1,8 +1,8 @@
 <?php
-// Include your database connection or configuration file
+
 include 'config.php';
 
-// Query to fetch events
+
 $stmt = $conn->prepare("SELECT * FROM events ORDER BY date, time");
 $stmt->execute();
 $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
