@@ -5,10 +5,10 @@
 //     exit();
 // }
 
-// Include your database connection or configuration file
+
 include 'config.php';
 
-// Handle event deletion
+
 if (isset($_GET['delete_event'])) {
     $event_id = $_GET['delete_event'];
     $stmt = $conn->prepare("DELETE FROM events WHERE id = :id");
